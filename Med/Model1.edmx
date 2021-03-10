@@ -1,0 +1,773 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище wsrPracticeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="analyzers">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="analyzer" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="insurance_companies">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="insurance_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="insurance_address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="insurance_inn" Type="int" Nullable="false" />
+          <Property Name="insurance_p_c" Type="int" Nullable="false" />
+          <Property Name="insurance_bik" Type="int" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="patients">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="full_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="datebirth" Type="date" Nullable="false" />
+          <Property Name="passport_ser" Type="int" Nullable="false" />
+          <Property Name="passport_num" Type="int" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="social_sec_number" Type="int" Nullable="false" />
+          <Property Name="social_type" Type="int" />
+          <Property Name="insurance_company" Type="int" />
+          <Property Name="country" Type="int" />
+          <Property Name="ein" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="guid" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="patients_blood">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient" Type="int" Nullable="false" />
+          <Property Name="barcode" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="provide_services">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="blood" Type="int" />
+          <Property Name="service" Type="int" />
+          <Property Name="result" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="accepted" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" />
+          <Property Name="analyzer" Type="int" />
+          <Property Name="user" Type="int" />
+          <Property Name="finish_date" Type="datetime" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="services">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service" Type="nvarchar(max)" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="complete_date" Type="int" />
+          <Property Name="average_deviation" Type="decimal" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="social_types">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="social_type" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="statuses">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_types">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="ip" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_enter" Type="date" Nullable="false" />
+          <Property Name="services" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="type" Type="int" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <Association Name="FK_patients_blood_patients">
+          <End Role="patients" Type="Self.patients" Multiplicity="1" />
+          <End Role="patients_blood" Type="Self.patients_blood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients_blood">
+              <PropertyRef Name="patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_countries">
+          <End Role="countries" Type="Self.countries" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_insurance_companies">
+          <End Role="insurance_companies" Type="Self.insurance_companies" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="insurance_companies">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="insurance_company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_social_types">
+          <End Role="social_types" Type="Self.social_types" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="social_types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="social_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provide_services_analyzers">
+          <End Role="analyzers" Type="Self.analyzers" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analyzers">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="analyzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provide_services_patients_blood">
+          <End Role="patients_blood" Type="Self.patients_blood" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients_blood">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="blood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provide_services_services">
+          <End Role="services" Type="Self.services" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provide_services_statuses">
+          <End Role="statuses" Type="Self.statuses" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="statuses">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provide_services_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_user_types">
+          <End Role="user_types" Type="Self.user_types" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище wsrPracticeModelContainer">
+          <EntitySet Name="analyzers" EntityType="Self.analyzers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countries" EntityType="Self.countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="insurance_companies" EntityType="Self.insurance_companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patients" EntityType="Self.patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patients_blood" EntityType="Self.patients_blood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provide_services" EntityType="Self.provide_services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="social_types" EntityType="Self.social_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="statuses" EntityType="Self.statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_types" EntityType="Self.user_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_patients_blood_patients" Association="Self.FK_patients_blood_patients">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="patients_blood" EntitySet="patients_blood" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_countries" Association="Self.FK_patients_countries">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_insurance_companies" Association="Self.FK_patients_insurance_companies">
+            <End Role="insurance_companies" EntitySet="insurance_companies" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_social_types" Association="Self.FK_patients_social_types">
+            <End Role="social_types" EntitySet="social_types" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provide_services_analyzers" Association="Self.FK_provide_services_analyzers">
+            <End Role="analyzers" EntitySet="analyzers" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provide_services_patients_blood" Association="Self.FK_provide_services_patients_blood">
+            <End Role="patients_blood" EntitySet="patients_blood" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provide_services_services" Association="Self.FK_provide_services_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provide_services_statuses" Association="Self.FK_provide_services_statuses">
+            <End Role="statuses" EntitySet="statuses" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provide_services_users" Association="Self.FK_provide_services_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_user_types" Association="Self.FK_users_user_types">
+            <End Role="user_types" EntitySet="user_types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="wsrPracticeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="analyzers">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="analyzer" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <NavigationProperty Name="provide_services" Relationship="Self.FK_provide_services_analyzers" FromRole="analyzers" ToRole="provide_services" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="patients" Relationship="Self.FK_patients_countries" FromRole="countries" ToRole="patients" />
+        </EntityType>
+        <EntityType Name="insurance_companies">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="insurance_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="insurance_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="insurance_inn" Type="Int32" Nullable="false" />
+          <Property Name="insurance_p_c" Type="Int32" Nullable="false" />
+          <Property Name="insurance_bik" Type="Int32" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <NavigationProperty Name="patients" Relationship="Self.FK_patients_insurance_companies" FromRole="insurance_companies" ToRole="patients" />
+        </EntityType>
+        <EntityType Name="patients">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="full_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="datebirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="passport_ser" Type="Int32" Nullable="false" />
+          <Property Name="passport_num" Type="Int32" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="social_sec_number" Type="Int32" Nullable="false" />
+          <Property Name="social_type" Type="Int32" />
+          <Property Name="insurance_company" Type="Int32" />
+          <Property Name="country" Type="Int32" />
+          <Property Name="ein" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="guid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <NavigationProperty Name="countries" Relationship="Self.FK_patients_countries" FromRole="patients" ToRole="countries" />
+          <NavigationProperty Name="insurance_companies" Relationship="Self.FK_patients_insurance_companies" FromRole="patients" ToRole="insurance_companies" />
+          <NavigationProperty Name="patients_blood" Relationship="Self.FK_patients_blood_patients" FromRole="patients" ToRole="patients_blood" />
+          <NavigationProperty Name="social_types" Relationship="Self.FK_patients_social_types" FromRole="patients" ToRole="social_types" />
+        </EntityType>
+        <EntityType Name="patients_blood">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient" Type="Int32" Nullable="false" />
+          <Property Name="barcode" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <NavigationProperty Name="patients" Relationship="Self.FK_patients_blood_patients" FromRole="patients_blood" ToRole="patients" />
+          <NavigationProperty Name="provide_services" Relationship="Self.FK_provide_services_patients_blood" FromRole="patients_blood" ToRole="provide_services" />
+        </EntityType>
+        <EntityType Name="provide_services">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="blood" Type="Int32" />
+          <Property Name="service" Type="Int32" />
+          <Property Name="result" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="accepted" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="analyzer" Type="Int32" />
+          <Property Name="user" Type="Int32" />
+          <Property Name="finish_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <NavigationProperty Name="analyzers" Relationship="Self.FK_provide_services_analyzers" FromRole="provide_services" ToRole="analyzers" />
+          <NavigationProperty Name="patients_blood" Relationship="Self.FK_provide_services_patients_blood" FromRole="provide_services" ToRole="patients_blood" />
+          <NavigationProperty Name="services" Relationship="Self.FK_provide_services_services" FromRole="provide_services" ToRole="services" />
+          <NavigationProperty Name="statuses" Relationship="Self.FK_provide_services_statuses" FromRole="provide_services" ToRole="statuses" />
+          <NavigationProperty Name="users" Relationship="Self.FK_provide_services_users" FromRole="provide_services" ToRole="users" />
+        </EntityType>
+        <EntityType Name="services">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="complete_date" Type="Int32" />
+          <Property Name="average_deviation" Type="Decimal" Precision="6" Scale="2" />
+          <NavigationProperty Name="provide_services" Relationship="Self.FK_provide_services_services" FromRole="services" ToRole="provide_services" />
+        </EntityType>
+        <EntityType Name="social_types">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="social_type" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="patients" Relationship="Self.FK_patients_social_types" FromRole="social_types" ToRole="patients" />
+        </EntityType>
+        <EntityType Name="statuses">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="provide_services" Relationship="Self.FK_provide_services_statuses" FromRole="statuses" ToRole="provide_services" />
+        </EntityType>
+        <EntityType Name="user_types">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="users" Relationship="Self.FK_users_user_types" FromRole="user_types" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_enter" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="services" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <NavigationProperty Name="provide_services" Relationship="Self.FK_provide_services_users" FromRole="users" ToRole="provide_services" />
+          <NavigationProperty Name="user_types" Relationship="Self.FK_users_user_types" FromRole="users" ToRole="user_types" />
+        </EntityType>
+        <Association Name="FK_provide_services_analyzers">
+          <End Role="analyzers" Type="Self.analyzers" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analyzers">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="analyzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_countries">
+          <End Role="countries" Type="Self.countries" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_insurance_companies">
+          <End Role="insurance_companies" Type="Self.insurance_companies" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="insurance_companies">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="insurance_company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_blood_patients">
+          <End Role="patients" Type="Self.patients" Multiplicity="1" />
+          <End Role="patients_blood" Type="Self.patients_blood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients_blood">
+              <PropertyRef Name="patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patients_social_types">
+          <End Role="social_types" Type="Self.social_types" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="social_types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="social_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provide_services_patients_blood">
+          <End Role="patients_blood" Type="Self.patients_blood" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients_blood">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="blood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provide_services_services">
+          <End Role="services" Type="Self.services" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provide_services_statuses">
+          <End Role="statuses" Type="Self.statuses" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="statuses">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provide_services_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="provide_services" Type="Self.provide_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="provide_services">
+              <PropertyRef Name="user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_user_types">
+          <End Role="user_types" Type="Self.user_types" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="wsrPracticeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="analyzers" EntityType="Self.analyzers" />
+          <EntitySet Name="countries" EntityType="Self.countries" />
+          <EntitySet Name="insurance_companies" EntityType="Self.insurance_companies" />
+          <EntitySet Name="patients" EntityType="Self.patients" />
+          <EntitySet Name="patients_blood" EntityType="Self.patients_blood" />
+          <EntitySet Name="provide_services" EntityType="Self.provide_services" />
+          <EntitySet Name="services" EntityType="Self.services" />
+          <EntitySet Name="social_types" EntityType="Self.social_types" />
+          <EntitySet Name="statuses" EntityType="Self.statuses" />
+          <EntitySet Name="user_types" EntityType="Self.user_types" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK_provide_services_analyzers" Association="Self.FK_provide_services_analyzers">
+            <End Role="analyzers" EntitySet="analyzers" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_countries" Association="Self.FK_patients_countries">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_insurance_companies" Association="Self.FK_patients_insurance_companies">
+            <End Role="insurance_companies" EntitySet="insurance_companies" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_blood_patients" Association="Self.FK_patients_blood_patients">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="patients_blood" EntitySet="patients_blood" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patients_social_types" Association="Self.FK_patients_social_types">
+            <End Role="social_types" EntitySet="social_types" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provide_services_patients_blood" Association="Self.FK_provide_services_patients_blood">
+            <End Role="patients_blood" EntitySet="patients_blood" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provide_services_services" Association="Self.FK_provide_services_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provide_services_statuses" Association="Self.FK_provide_services_statuses">
+            <End Role="statuses" EntitySet="statuses" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provide_services_users" Association="Self.FK_provide_services_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="provide_services" EntitySet="provide_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_user_types" Association="Self.FK_users_user_types">
+            <End Role="user_types" EntitySet="user_types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище wsrPracticeModelContainer" CdmEntityContainer="wsrPracticeEntities">
+          <EntitySetMapping Name="analyzers">
+            <EntityTypeMapping TypeName="wsrPracticeModel.analyzers">
+              <MappingFragment StoreEntitySet="analyzers">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="analyzer" ColumnName="analyzer" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="wsrPracticeModel.countries">
+              <MappingFragment StoreEntitySet="countries">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="country" ColumnName="country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insurance_companies">
+            <EntityTypeMapping TypeName="wsrPracticeModel.insurance_companies">
+              <MappingFragment StoreEntitySet="insurance_companies">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="insurance_name" ColumnName="insurance_name" />
+                <ScalarProperty Name="insurance_address" ColumnName="insurance_address" />
+                <ScalarProperty Name="insurance_inn" ColumnName="insurance_inn" />
+                <ScalarProperty Name="insurance_p_c" ColumnName="insurance_p_c" />
+                <ScalarProperty Name="insurance_bik" ColumnName="insurance_bik" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patients">
+            <EntityTypeMapping TypeName="wsrPracticeModel.patients">
+              <MappingFragment StoreEntitySet="patients">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="datebirth" ColumnName="datebirth" />
+                <ScalarProperty Name="passport_ser" ColumnName="passport_ser" />
+                <ScalarProperty Name="passport_num" ColumnName="passport_num" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="social_sec_number" ColumnName="social_sec_number" />
+                <ScalarProperty Name="social_type" ColumnName="social_type" />
+                <ScalarProperty Name="insurance_company" ColumnName="insurance_company" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="ein" ColumnName="ein" />
+                <ScalarProperty Name="guid" ColumnName="guid" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patients_blood">
+            <EntityTypeMapping TypeName="wsrPracticeModel.patients_blood">
+              <MappingFragment StoreEntitySet="patients_blood">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="patient" ColumnName="patient" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provide_services">
+            <EntityTypeMapping TypeName="wsrPracticeModel.provide_services">
+              <MappingFragment StoreEntitySet="provide_services">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="blood" ColumnName="blood" />
+                <ScalarProperty Name="service" ColumnName="service" />
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="accepted" ColumnName="accepted" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="analyzer" ColumnName="analyzer" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="finish_date" ColumnName="finish_date" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services">
+            <EntityTypeMapping TypeName="wsrPracticeModel.services">
+              <MappingFragment StoreEntitySet="services">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="service" ColumnName="service" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="complete_date" ColumnName="complete_date" />
+                <ScalarProperty Name="average_deviation" ColumnName="average_deviation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="social_types">
+            <EntityTypeMapping TypeName="wsrPracticeModel.social_types">
+              <MappingFragment StoreEntitySet="social_types">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="social_type" ColumnName="social_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="statuses">
+            <EntityTypeMapping TypeName="wsrPracticeModel.statuses">
+              <MappingFragment StoreEntitySet="statuses">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_types">
+            <EntityTypeMapping TypeName="wsrPracticeModel.user_types">
+              <MappingFragment StoreEntitySet="user_types">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="wsrPracticeModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="last_enter" ColumnName="last_enter" />
+                <ScalarProperty Name="services" ColumnName="services" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
