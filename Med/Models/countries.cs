@@ -7,23 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Med
+namespace Med.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class user_types
+    public partial class countries
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user_types()
+        public countries()
         {
-            this.users = new HashSet<users>();
+            this.patients = new HashSet<patients>();
         }
     
         public int code { get; set; }
-        public string user_type { get; set; }
+        public string country { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<users> users { get; set; }
+        public virtual ICollection<patients> patients { get; set; }
     }
 }

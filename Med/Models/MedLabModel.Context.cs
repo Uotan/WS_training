@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Med
+namespace Med.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class wsrPracticeEntities : DbContext
+    public partial class MedLabEntities : DbContext
     {
-        public wsrPracticeEntities()
-            : base("name=wsrPracticeEntities")
+        public MedLabEntities()
+            : base("name=MeLabEntities")
         {
         }
     

@@ -7,28 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Med
+namespace Med.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class insurance_companies
+    public partial class user_types
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public insurance_companies()
+        public user_types()
         {
-            this.patients = new HashSet<patients>();
+            this.users = new HashSet<users>();
         }
     
         public int code { get; set; }
-        public string insurance_name { get; set; }
-        public string insurance_address { get; set; }
-        public int insurance_inn { get; set; }
-        public int insurance_p_c { get; set; }
-        public int insurance_bik { get; set; }
-        public Nullable<bool> is_deleted { get; set; }
+        public string user_type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<patients> patients { get; set; }
+        public virtual ICollection<users> users { get; set; }
     }
 }

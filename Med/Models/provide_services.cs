@@ -7,27 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Med
+namespace Med.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class patients_blood
+    public partial class provide_services
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public patients_blood()
-        {
-            this.provide_services = new HashSet<provide_services>();
-        }
-    
         public int code { get; set; }
-        public int patient { get; set; }
-        public int barcode { get; set; }
-        public System.DateTime date { get; set; }
+        public Nullable<int> blood { get; set; }
+        public Nullable<int> service { get; set; }
+        public decimal result { get; set; }
+        public int accepted { get; set; }
+        public Nullable<int> status { get; set; }
+        public Nullable<int> analyzer { get; set; }
+        public Nullable<int> user { get; set; }
+        public System.DateTime finish_date { get; set; }
         public Nullable<bool> is_deleted { get; set; }
     
-        public virtual patients patients { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<provide_services> provide_services { get; set; }
+        public virtual analyzers analyzers { get; set; }
+        public virtual patients_blood patients_blood { get; set; }
+        public virtual services services { get; set; }
+        public virtual statuses statuses { get; set; }
+        public virtual users users { get; set; }
     }
 }

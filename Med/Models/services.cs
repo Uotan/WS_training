@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Med
+namespace Med.Models
 {
     using System;
     using System.Collections.Generic;

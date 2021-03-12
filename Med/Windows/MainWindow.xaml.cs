@@ -10,41 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Med.Models;
 
-namespace Med
+namespace Med.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        wsrPracticeEntities context;
+        MedLabEntities medLabEntities = new MedLabEntities();
+        users _user;
+        user_types user_Types = new user_types();
         public MainWindow()
         {
-            InitializeComponent();
-            context = new wsrPracticeEntities();
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        }
+        public MainWindow(users user)
         {
-            string log;
-            string pass;
-            try
-            {
-                log = txtLogin.Text;
-                pass = txtPass.Password;
-                var A = context.users.FirstOrDefault(x => x.login == log && x.password == pass);
-                if (A == null)
-                {
-                    MessageBox.Show("вход не выполнен");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            InitializeComponent();
+            _user = user;
+            var usert = medLabEntities.user_types.FirstOrDefault(x => x.code == _user.type);
+            userType.Content = usert.user_type + " - " + _user.full_name;
         }
     }
 }

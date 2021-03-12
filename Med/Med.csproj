@@ -67,68 +67,84 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="analyzers.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="APIs\CaptchaAPI.cs" />
+    <Compile Include="Windows\CaptchaWindow.xaml.cs">
+      <DependentUpon>CaptchaWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="countries.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="insurance_companies.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="patients.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="patients_blood.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="provide_services.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="services.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="social_types.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="statuses.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="users.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="user_types.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Page Include="Windows\MainWindow.xaml">
+    <Page Include="Windows\CaptchaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="APIs\LoginAPI.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Models\analyzers.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\countries.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\insurance_companies.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MedLabModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedLabModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MedLabModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MedLabModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedLabModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\patients.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\patients_blood.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\provide_services.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\services.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\social_types.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\statuses.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\users.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user_types.cs">
+      <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -146,12 +162,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model1.edmx">
+    <EntityDeploy Include="Models\MedLabModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>MedLabModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="Models\MedLabModel.edmx.diagram">
+      <DependentUpon>MedLabModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -163,24 +179,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\logo.ico" />
     <Resource Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Pages\" />
+    <Content Include="Models\MedLabModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MedLabModel.edmx</DependentUpon>
+      <LastGenOutput>MedLabModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MedLabModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MedLabModel.edmx</DependentUpon>
+      <LastGenOutput>MedLabModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

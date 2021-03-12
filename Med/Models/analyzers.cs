@@ -7,21 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Med
+namespace Med.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class statuses
+    public partial class analyzers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public statuses()
+        public analyzers()
         {
             this.provide_services = new HashSet<provide_services>();
         }
     
         public int code { get; set; }
-        public string status { get; set; }
+        public string analyzer { get; set; }
+        public Nullable<bool> is_deleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<provide_services> provide_services { get; set; }

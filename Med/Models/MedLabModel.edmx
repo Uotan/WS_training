@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище wsrPracticeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище MedLabModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="analyzers">
           <Key>
             <PropertyRef Name="code" />
@@ -243,7 +243,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище wsrPracticeModelContainer">
+        <EntityContainer Name="Хранилище MedLabModelContainer">
           <EntitySet Name="analyzers" EntityType="Self.analyzers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="countries" EntityType="Self.countries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="insurance_companies" EntityType="Self.insurance_companies" Schema="dbo" store:Type="Tables" />
@@ -300,7 +300,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="wsrPracticeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MedLabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="analyzers">
           <Key>
             <PropertyRef Name="code" />
@@ -559,7 +559,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="wsrPracticeEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MeLabEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="analyzers" EntityType="Self.analyzers" />
           <EntitySet Name="countries" EntityType="Self.countries" />
           <EntitySet Name="insurance_companies" EntityType="Self.insurance_companies" />
@@ -617,9 +617,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище wsrPracticeModelContainer" CdmEntityContainer="wsrPracticeEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MedLabModelContainer" CdmEntityContainer="MeLabEntities">
           <EntitySetMapping Name="analyzers">
-            <EntityTypeMapping TypeName="wsrPracticeModel.analyzers">
+            <EntityTypeMapping TypeName="MedLabModel.analyzers">
               <MappingFragment StoreEntitySet="analyzers">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="analyzer" ColumnName="analyzer" />
@@ -628,7 +628,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="countries">
-            <EntityTypeMapping TypeName="wsrPracticeModel.countries">
+            <EntityTypeMapping TypeName="MedLabModel.countries">
               <MappingFragment StoreEntitySet="countries">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="country" ColumnName="country" />
@@ -636,7 +636,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="insurance_companies">
-            <EntityTypeMapping TypeName="wsrPracticeModel.insurance_companies">
+            <EntityTypeMapping TypeName="MedLabModel.insurance_companies">
               <MappingFragment StoreEntitySet="insurance_companies">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="insurance_name" ColumnName="insurance_name" />
@@ -649,7 +649,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="patients">
-            <EntityTypeMapping TypeName="wsrPracticeModel.patients">
+            <EntityTypeMapping TypeName="MedLabModel.patients">
               <MappingFragment StoreEntitySet="patients">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="login" ColumnName="login" />
@@ -671,7 +671,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="patients_blood">
-            <EntityTypeMapping TypeName="wsrPracticeModel.patients_blood">
+            <EntityTypeMapping TypeName="MedLabModel.patients_blood">
               <MappingFragment StoreEntitySet="patients_blood">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="patient" ColumnName="patient" />
@@ -682,7 +682,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="provide_services">
-            <EntityTypeMapping TypeName="wsrPracticeModel.provide_services">
+            <EntityTypeMapping TypeName="MedLabModel.provide_services">
               <MappingFragment StoreEntitySet="provide_services">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="blood" ColumnName="blood" />
@@ -698,7 +698,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="services">
-            <EntityTypeMapping TypeName="wsrPracticeModel.services">
+            <EntityTypeMapping TypeName="MedLabModel.services">
               <MappingFragment StoreEntitySet="services">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="service" ColumnName="service" />
@@ -709,7 +709,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="social_types">
-            <EntityTypeMapping TypeName="wsrPracticeModel.social_types">
+            <EntityTypeMapping TypeName="MedLabModel.social_types">
               <MappingFragment StoreEntitySet="social_types">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="social_type" ColumnName="social_type" />
@@ -717,7 +717,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="statuses">
-            <EntityTypeMapping TypeName="wsrPracticeModel.statuses">
+            <EntityTypeMapping TypeName="MedLabModel.statuses">
               <MappingFragment StoreEntitySet="statuses">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="status" ColumnName="status" />
@@ -725,7 +725,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="user_types">
-            <EntityTypeMapping TypeName="wsrPracticeModel.user_types">
+            <EntityTypeMapping TypeName="MedLabModel.user_types">
               <MappingFragment StoreEntitySet="user_types">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="user_type" ColumnName="user_type" />
@@ -733,7 +733,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="wsrPracticeModel.users">
+            <EntityTypeMapping TypeName="MedLabModel.users">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="full_name" ColumnName="full_name" />

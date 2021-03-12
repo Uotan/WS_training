@@ -7,24 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Med
+namespace Med.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class analyzers
+    public partial class social_types
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public analyzers()
+        public social_types()
         {
-            this.provide_services = new HashSet<provide_services>();
+            this.patients = new HashSet<patients>();
         }
     
         public int code { get; set; }
-        public string analyzer { get; set; }
-        public Nullable<bool> is_deleted { get; set; }
+        public string social_type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<provide_services> provide_services { get; set; }
+        public virtual ICollection<patients> patients { get; set; }
     }
 }

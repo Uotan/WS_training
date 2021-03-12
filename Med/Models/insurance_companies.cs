@@ -7,21 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Med
+namespace Med.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class countries
+    public partial class insurance_companies
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public countries()
+        public insurance_companies()
         {
             this.patients = new HashSet<patients>();
         }
     
         public int code { get; set; }
-        public string country { get; set; }
+        public string insurance_name { get; set; }
+        public string insurance_address { get; set; }
+        public int insurance_inn { get; set; }
+        public int insurance_p_c { get; set; }
+        public int insurance_bik { get; set; }
+        public Nullable<bool> is_deleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<patients> patients { get; set; }
