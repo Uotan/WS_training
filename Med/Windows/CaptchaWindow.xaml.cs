@@ -20,7 +20,7 @@ namespace Med.Windows
     /// </summary>
     public partial class CaptchaWindow : Window
     {
-        public CaptchaWindow()s
+        public CaptchaWindow()
         {
             InitializeComponent();
             CaptchaAPI captcha = new CaptchaAPI();
