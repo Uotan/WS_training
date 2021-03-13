@@ -28,8 +28,8 @@ namespace Med.Windows
         {
             InitializeComponent();
             _user = user;
-            var usert = medLabEntities.user_types.FirstOrDefault(x => x.code == _user.type);
-            userType.Content = usert.user_type + " - " + _user.full_name;
+            var user_TYPE = medLabEntities.user_types.FirstOrDefault(x => x.code == _user.type);
+            userType.Content = user_TYPE.user_type + " - " + _user.full_name;
         }
     }
 }

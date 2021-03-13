@@ -9,7 +9,7 @@
         ResizeMode="CanMinimize" 
         Height="400" 
         Width="486"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -23,6 +23,6 @@
             <TextBlock Text="Password" FontSize="20" Style="{StaticResource forLabels}"></TextBlock>
             <PasswordBox x:Name="passwordPasswordBox" Height="50" Width="200" VerticalContentAlignment="Center" FontSize="20"></PasswordBox>
         </UniformGrid>
-        <Button Grid.Row="3" Height="50" Width="300" FontSize="20" Style="{StaticResource forButt}" Click="Button_Click">ВХОД</Button>
+        <Button x:Name="btnLog" Grid.Row="3" Height="50" Width="300" FontSize="20" Style="{StaticResource forButt}" Click="btnLog_Click">ВХОД</Button>
     </Grid>
 </Window>

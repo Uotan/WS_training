@@ -12,8 +12,8 @@ namespace Med.APIs
         {
             Random random = new Random();
             string code = null;
-            for (int i = 0; i < 6; i++)
-                code += random.Next(0, 10).ToString();
+            for (int i = 0; i < 4; i++)
+                code += (char)random.Next(33, 123);
             return code;
         }
     }

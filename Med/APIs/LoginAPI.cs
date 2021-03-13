@@ -15,6 +15,7 @@ namespace Med.APIs
         public string _login = null;
         string _password = null;
         LoginWindow loginWin;
+        public int Logtry = 0;
         public LoginAPI()
         {
 
@@ -24,17 +25,45 @@ namespace Med.APIs
             _login = loginTextBox.Text;
             _password = passwordPasswordBox.Password;
             loginWin = loginWindow;
+            checkUser();
         }
         public void checkUser()
         {
             try
             {
-                MedLabEntities medLabEntities = new MedLabEntities();
-                users check = medLabEntities.users.FirstOrDefault(x => x.login == _login && x.password == _password);
-                if (check != null)
+                if (_login==""||_password=="")
                 {
-                    createMain(check);
+                    MessageBox.Show("Не введен логин или пароль");
                 }
+                else
+                {
+                    MedLabEntities medLabEntities = new MedLabEntities();
+                    users check = medLabEntities.users.FirstOrDefault(x => x.login == _login && x.password == _password);
+                    if (check != null)
+                    {
+                        createMain(check);
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("Неправильно введен логин или пароль!");
+                        Logtry++;
+                        if (Logtry >= 1)
+                        {
+                            CaptchaWindow captchaWindow = new CaptchaWindow();
+                            captchaWindow.ShowDialog();
+                            if (CaptchaResult.RES==false)
+                            {
+                                MessageBox.Show("Вход будет заблокирован на 10 секунд");
+                            }
+                            if (CaptchaResult.RES == true)
+                            {
+                                MessageBox.Show("CAPTCHA решена!");
+                            }
+                        }
+                    }
+                }
+                
             }
             catch (Exception ex)
             {

@@ -68,6 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="APIs\CaptchaAPI.cs" />
+    <Compile Include="APIs\CaptchaResult.cs" />
     <Compile Include="Windows\CaptchaWindow.xaml.cs">
       <DependentUpon>CaptchaWindow.xaml</DependentUpon>
     </Compile>

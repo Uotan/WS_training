@@ -29,17 +29,20 @@ namespace Med.Windows
         
         private void captchaTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (captchaTextBox.Text.Length == 6)
+            if (captchaTextBox.Text.Length == 4)
             {
                 if (captchaTextBox.Text == captchaLabel.Content.ToString())
                 {
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
+                    //MainWindow mainWindow = new MainWindow();
+                    //mainWindow.Show();
+                    CaptchaResult.RES = true;
                     this.Close();
                 }
                 else
                 {
                     MessageBox.Show("Captcha введена неверно", "Captcha", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CaptchaResult.RES = false;
+                    this.Close();
                 }
             }
             
