@@ -14,7 +14,8 @@ namespace Med.APIs
     {
         public string _login = null;
         string _password = null;
-        LoginWindow loginWin;
+        int _loginCounter = 0;
+        LoginWindow _loginWindow;
         public LoginAPI()
         {
 
@@ -23,29 +24,34 @@ namespace Med.APIs
         {
             _login = loginTextBox.Text;
             _password = passwordPasswordBox.Password;
-            loginWin = loginWindow;
+            _loginWindow = loginWindow;
         }
+
         public void checkUser()
         {
-            try
+            MedLabEntities medLabEntities = new MedLabEntities();
+            var check = medLabEntities.users.FirstOrDefault(x => x.login == _login && x.password == _password);
+            if (check==null)
             {
-                MedLabEntities medLabEntities = new MedLabEntities();
-                users check = medLabEntities.users.FirstOrDefault(x => x.login == _login && x.password == _password);
-                if (check != null)
-                {
-                    createMain(check);
-                }
+                _loginCounter++;
+                MessageBox.Show("Неправильно введен логин или пароль", "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error);
+                _login = "";
+                _password = "";
             }
-            catch (Exception ex)
+            if (check==null && _loginCounter>0)
             {
-                MessageBox.Show(ex.Message);
+                goToCaptcha();
             }
         }
-        public void createMain(users user)
+
+        public void goToCaptcha()
         {
-            MainWindow mainWindow = new MainWindow(user);
-            mainWindow.Show();
-            loginWin.Close();
+            CaptchaWindow captchaWindow = new CaptchaWindow();
+            captchaWindow.Show();
+            if (true)
+            {
+
+            }
         }
     }
 }

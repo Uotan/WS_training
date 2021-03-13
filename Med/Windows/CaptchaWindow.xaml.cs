@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Med.APIs;
 using Med.Windows;
+using Med.Models;
 namespace Med.Windows
 {
     /// <summary>
@@ -23,26 +24,11 @@ namespace Med.Windows
         public CaptchaWindow()
         {
             InitializeComponent();
-            CaptchaAPI captcha = new CaptchaAPI();
-            captchaLabel.Content = captcha.GenerateCode();
         }
-        
+
         private void captchaTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (captchaTextBox.Text.Length == 6)
-            {
-                if (captchaTextBox.Text == captchaLabel.Content.ToString())
-                {
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Captcha введена неверно", "Captcha", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            
+        { 
+                    
         }
     }
 }

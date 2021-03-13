@@ -23,7 +23,6 @@ namespace Med
     /// </summary>
     public partial class LoginWindow : Window
     {
-
         public LoginWindow()
         {
             InitializeComponent();
@@ -31,11 +30,7 @@ namespace Med
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LoginAPI loginAPI = new LoginAPI(loginTextBox, passwordPasswordBox, this);
-            CaptchaWindow captchaWindow = new CaptchaWindow();
-            captchaWindow.Show();
-            this.Close();
-            //loginAPI.checkUser();
+
         }
     }
 }

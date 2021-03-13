@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Med.Models;
+using Med.Windows;
 
 namespace Med.APIs
 {
     class CaptchaAPI
     {
-        public string GenerateCode()
+        CaptchaWindow _captchaWindow;
+        public CaptchaAPI(CaptchaWindow captchaWindow)
         {
-            Random random = new Random();
-            string code = null;
-            for (int i = 0; i < 6; i++)
-                code += random.Next(0, 10).ToString();
-            return code;
+            _captchaWindow = captchaWindow;
         }
     }
 }
