@@ -26,6 +26,8 @@
         <AssociationConnector Association="MedLabModel.FK_provide_services_statuses" ManuallyRouted="false" />
         <AssociationConnector Association="MedLabModel.FK_provide_services_users" ManuallyRouted="false" />
         <AssociationConnector Association="MedLabModel.FK_users_user_types" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MedLabModel.history_login" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MedLabModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

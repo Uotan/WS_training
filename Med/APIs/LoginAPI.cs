@@ -37,15 +37,22 @@ namespace Med.APIs
                 }
                 else
                 {
-                    MedLabEntities medLabEntities = new MedLabEntities();
+
+                    MeLabEntities medLabEntities = new MeLabEntities();
                     users check = medLabEntities.users.FirstOrDefault(x => x.login == _login && x.password == _password);
+                    
                     if (check != null)
                     {
+                        history_login H = new history_login { userLogin = _login, success = true, Time = DateTime.UtcNow };
+                        medLabEntities.history_login.Add(H);
+                        medLabEntities.SaveChanges();
                         createMain(check);
                     }
                     else
                     {
-
+                        history_login H = new history_login { userLogin = _login, success = false, Time = DateTime.UtcNow };
+                        medLabEntities.history_login.Add(H);
+                        medLabEntities.SaveChanges();
                         MessageBox.Show("Неправильно введен логин или пароль!");
                         Logtry++;
                         if (Logtry >= 1)

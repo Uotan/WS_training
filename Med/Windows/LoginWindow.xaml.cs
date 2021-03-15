@@ -19,13 +19,12 @@ using System.Windows.Threading;
 
 namespace Med
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
+        bool L_check = false;
+        bool P_check = false;
         DispatcherTimer dt;
-        public int BlockTime = 0;
+        public int BlockTime = 11;
         public LoginWindow()
         {
             InitializeComponent();
@@ -41,11 +40,13 @@ namespace Med
 
         private void Dt_Tick(object sender, EventArgs e)
         {
-            BlockTime++;
-            if (BlockTime == 10)
+            BlockTime--;
+            btnLog.Content = BlockTime.ToString();
+            if (BlockTime == 0)
             {
                 dt.Stop();
-                BlockTime = 0;
+                btnLog.Content = "ВХОД";
+                BlockTime = 10;
                 loginTextBox.IsEnabled = true;
                 passwordPasswordBox.IsEnabled = true;
                 btnLog.IsEnabled = true;
@@ -62,10 +63,41 @@ namespace Med
                 passwordPasswordBox.IsEnabled = false;
                 btnLog.IsEnabled = false;
             }
-            //CaptchaWindow captchaWindow = new CaptchaWindow();
-            //captchaWindow.ShowDialog();
-            //this.Close();
-            //loginAPI.checkUser();
+        }
+
+        private void passwordPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+
+            P_check = true;
+            if (passwordPasswordBox.Password == "")
+            {
+                P_check = false;
+            }
+            if (P_check==true&&L_check==true)
+            {
+                btnLog.IsEnabled = true;
+            }
+            else
+            {
+                btnLog.IsEnabled =false;
+            }
+        }
+
+        private void loginTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            L_check = true;
+            if (loginTextBox.Text == "")
+            {
+               L_check = false;
+            }
+            if (P_check == true && L_check == true)
+            {
+                btnLog.IsEnabled = true;
+            }
+            else
+            {
+                btnLog.IsEnabled = false;
+            }
         }
     }
 }

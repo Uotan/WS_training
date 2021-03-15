@@ -17,7 +17,7 @@ namespace Med.Windows
 {
     public partial class MainWindow : Window
     {
-        MedLabEntities medLabEntities = new MedLabEntities();
+        MeLabEntities medLabEntities = new MeLabEntities();
         users _user;
         user_types user_Types = new user_types();
         public MainWindow()

@@ -13,9 +13,9 @@ namespace Med.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MedLabEntities : DbContext
+    public partial class MeLabEntities : DbContext
     {
-        public MedLabEntities()
+        public MeLabEntities()
             : base("name=MeLabEntities")
         {
         }
@@ -36,5 +36,7 @@ namespace Med.Models
         public virtual DbSet<statuses> statuses { get; set; }
         public virtual DbSet<user_types> user_types { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<history_login> history_login { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }
