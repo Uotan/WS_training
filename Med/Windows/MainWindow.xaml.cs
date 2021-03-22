@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Med.Models;
+using Med.APIs;
+using Med.Pages;
 
 namespace Med.Windows
 {
@@ -22,14 +24,41 @@ namespace Med.Windows
         user_types user_Types = new user_types();
         public MainWindow()
         {
-
+            
         }
         public MainWindow(users user)
         {
             InitializeComponent();
+            Style = (Style)FindResource(typeof(Window));
+            FrameClass._mainFrame = WindowFrame;
+            //FrameClass._mainFrame.Navigate(new PageLaborantMain());
             _user = user;
             var user_TYPE = medLabEntities.user_types.FirstOrDefault(x => x.code == _user.type);
-            userType.Content = user_TYPE.user_type + " - " + _user.full_name;
+            userTypeLabel.Content = user_TYPE.user_type + " - " + _user.full_name;
+            switch (_user.type)
+            {
+                case 1: FrameClass._mainFrame.Navigate(new PageBuhgalterMain()); break;
+                case 2: FrameClass._mainFrame.Navigate(new PageLaborantMain()); break;
+                case 3: FrameClass._mainFrame.Navigate(new PageLabSercherMain()); break;
+                case 4: FrameClass._mainFrame.Navigate(new PageAdminMain()); break;
+                default:
+                    break;
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Frame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
+
+        private void Frame_ContentRendered(object sender, EventArgs e)
+        {
+
         }
     }
 }

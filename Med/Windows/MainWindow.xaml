@@ -6,10 +6,27 @@
         xmlns:local="clr-namespace:Med.Windows"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="450" 
-        Width="800"
-        WindowStartupLocation="CenterScreen">
+        Height="490" 
+        Width="700"
+        MinHeight="490"
+        MinWidth="700"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        <Label x:Name="userType"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource DopColor}">
+            <Image Source="/Resources/logo.png"
+                   HorizontalAlignment="Left"
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Label x:Name="userTypeLabel"
+                   HorizontalAlignment="Right"
+                   Content="Сергей Недушко - администратор"
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   Margin="0,0,10,0"/>
+        </Grid>
+        <Frame Grid.Row="1" x:Name="WindowFrame" Navigated="Frame_Navigated" ContentRendered="Frame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

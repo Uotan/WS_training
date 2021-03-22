@@ -69,11 +69,24 @@
     </ApplicationDefinition>
     <Compile Include="APIs\CaptchaAPI.cs" />
     <Compile Include="APIs\CaptchaResult.cs" />
+    <Compile Include="APIs\FrameClass.cs" />
     <Compile Include="Models\history_login.cs">
       <DependentUpon>MedLabModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>MedLabModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageAdminMain.xaml.cs">
+      <DependentUpon>PageAdminMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageBuhgalterMain.xaml.cs">
+      <DependentUpon>PageBuhgalterMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageLaborantMain.xaml.cs">
+      <DependentUpon>PageLaborantMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageLabSercherMain.xaml.cs">
+      <DependentUpon>PageLabSercherMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\CaptchaWindow.xaml.cs">
       <DependentUpon>CaptchaWindow.xaml</DependentUpon>
@@ -81,6 +94,22 @@
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\PageAdminMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageBuhgalterMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageLaborantMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageLabSercherMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\CaptchaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

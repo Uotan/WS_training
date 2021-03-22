@@ -28,6 +28,7 @@ namespace Med
         public LoginWindow()
         {
             InitializeComponent();
+            Style = (Style)FindResource(typeof(Window));
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

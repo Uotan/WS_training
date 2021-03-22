@@ -9,7 +9,8 @@
         ResizeMode="CanMinimize" 
         Height="400" 
         Width="486"
-        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        WindowStartupLocation="CenterScreen" 
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -19,10 +20,10 @@
         <Image Source="/Resources/logo.png" RenderOptions.BitmapScalingMode="HighQuality" Grid.Row="0" />
         <UniformGrid Grid.Row="1" Columns="2">
             <TextBlock Text="Login" FontSize="20" Style="{StaticResource forLabels}"></TextBlock>
-            <TextBox x:Name="loginTextBox" Height="50" TextChanged="loginTextBox_TextChanged" Width="200" FontSize="20" Style="{StaticResource forTExtbox}" VerticalContentAlignment="Center"></TextBox>
+            <TextBox x:Name="loginTextBox" Height="50" TextChanged="loginTextBox_TextChanged" Width="200" FontSize="20" VerticalContentAlignment="Center"></TextBox>
             <TextBlock Text="Password" FontSize="20" Style="{StaticResource forLabels}"></TextBlock>
             <PasswordBox x:Name="passwordPasswordBox" Height="50" Width="200" VerticalContentAlignment="Center" PasswordChanged="passwordPasswordBox_PasswordChanged" FontSize="20"></PasswordBox>
         </UniformGrid>
-        <Button x:Name="btnLog" IsEnabled="False" Grid.Row="3" Height="50" Width="300" FontSize="20" Style="{StaticResource forButt}" Click="btnLog_Click">ВХОД</Button>
+        <Button x:Name="btnLog" IsEnabled="False" Grid.Row="3" Height="50" Width="300" FontSize="20" Style="{StaticResource forButt}" Click="btnLog_Click" IsDefault="True">ВХОД</Button>
     </Grid>
 </Window>

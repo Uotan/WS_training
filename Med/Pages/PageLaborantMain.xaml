@@ -1,0 +1,19 @@
+﻿<Page x:Class="Med.Pages.PageLaborantMain"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Med.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="420" d:DesignWidth="700"
+      MinHeight="420"
+      MinWidth="700"
+      Title="PageLaborantMain">
+
+    <Grid>
+        <UniformGrid Columns="2">
+            <Button x:Name="BtnTakeBio" Width="250" Height="100" FontSize="20" Style="{StaticResource forButt}">Приянять биоматериал</Button>
+            <Button x:Name="BtnDoReport" Width="250" Height="100" FontSize="20" Style="{StaticResource forButt}">Сформировать отчеты</Button>
+        </UniformGrid>
+    </Grid>
+</Page>

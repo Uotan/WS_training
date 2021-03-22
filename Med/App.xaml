@@ -4,18 +4,23 @@
              xmlns:local="clr-namespace:Med"
              StartupUri="Windows\LoginWindow.xaml">
     <Application.Resources>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily"
+                    Value="Comic Sans MS"/>
+            <Setter Property="Icon"
+                    Value="/Resources/logo.ico"/>
+        </Style>
+        <Style TargetType="{x:Type Page}">
+            <Setter Property="FontFamily"
+                    Value="Comic Sans MS"/>
+        </Style>
         <Style x:Key="forButt" TargetType="Button">
-            <Setter Property="Background" Value="#FF498C51"></Setter>
-            <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
-            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Background" Value="#FF498C51"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <Style x:Key="forLabels" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        </Style>
-        <Style x:Key="forTExtbox" TargetType="TextBox">
-            <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
         </Style>
         <SolidColorBrush x:Key="DopColor" Color="#FF76E383"></SolidColorBrush>
         <SolidColorBrush x:Key="attenColor" Color="#FF498C51"></SolidColorBrush>
