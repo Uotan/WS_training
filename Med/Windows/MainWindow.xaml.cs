@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Med.Models;
 using Med.APIs;
 using Med.Pages;
+using System.Windows.Threading;
 
 namespace Med.Windows
 {
@@ -22,6 +23,8 @@ namespace Med.Windows
         MeLabEntities medLabEntities = new MeLabEntities();
         users _user;
         user_types user_Types = new user_types();
+        DispatcherTimer dt;
+        public TimeSpan TimeLost = new TimeSpan(0, 10, 0);
         public MainWindow()
         {
             
@@ -48,7 +51,21 @@ namespace Med.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            dt = new DispatcherTimer();
+            dt.Interval = TimeSpan.FromSeconds(1);
+            dt.Tick += Dt_Tick;
+            dt.Start();
+        }
 
+        private void Dt_Tick(object sender, EventArgs e)
+        {
+            lblTime.Content = "Время сессии "+TimeLost.ToString();
+            TimeLost = TimeLost.Subtract(new TimeSpan(0, 0, 1));
+            if (TimeLost==(new TimeSpan(0,0,0)))
+            {
+                dt.Stop();
+                MessageBox.Show("Пора бы передохнуть");
+            }
         }
 
         private void Frame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -61,4 +78,4 @@ namespace Med.Windows
 
         }
     }
-}
+    }
