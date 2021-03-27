@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="883a412a29dd4a5c98b20518ad20e16e" Name="Diagram1">
+        <EntityTypeShape EntityType="wsr_practiceModel.analyzers" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.countries" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.history_login" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.insurance_companies" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.login_history" Width="1.5" PointX="10" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.patients" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.patients_blood" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.provide_services" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.services" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.social_types" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.statuses" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.success_types" Width="1.5" PointX="7.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.user_types" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="wsr_practiceModel.users" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <AssociationConnector Association="wsr_practiceModel.FK_provide_services_analyzers" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_patients_countries" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_patients_insurance_companies" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_login_history_success_types" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_patients_blood_patients" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_patients_social_types" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_provide_services_patients_blood" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_provide_services_services" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_provide_services_statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_provide_services_users" ManuallyRouted="false" />
+        <AssociationConnector Association="wsr_practiceModel.FK_users_user_types" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

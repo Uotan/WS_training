@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Med.Windows"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="490" 
+        Height="520" 
         Width="700"
-        MinHeight="490"
+        MinHeight="520"
         MinWidth="700"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>

@@ -12,7 +12,7 @@
 
     <Grid>
         <UniformGrid Columns="2">
-            <Button x:Name="BtnTakeBio" Width="250" Height="100" FontSize="20" Style="{StaticResource forButt}">Приянять биоматериал</Button>
+            <Button x:Name="BtnTakeBio" Width="250" Height="100" FontSize="20" Style="{StaticResource forButt}" Click="BtnTakeBio_Click">Приянять биоматериал</Button>
             <Button x:Name="BtnDoReport" Width="250" Height="100" FontSize="20" Style="{StaticResource forButt}">Сформировать отчеты</Button>
         </UniformGrid>
     </Grid>

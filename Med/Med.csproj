@@ -70,11 +70,74 @@
     <Compile Include="APIs\CaptchaAPI.cs" />
     <Compile Include="APIs\CaptchaResult.cs" />
     <Compile Include="APIs\FrameClass.cs" />
+    <Compile Include="Models\analyzers.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\countries.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\history_login.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\insurance_companies.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\login_history.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelSecond.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSecond.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelSecond.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelSecond.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSecond.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\patients.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\patients_blood.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\provide_services.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\services.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\social_types.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\statuses.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\success_types.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\users.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user_types.cs">
+      <DependentUpon>ModelSecond.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Laborant\PageProvideService.xaml.cs">
+      <DependentUpon>PageProvideService.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PageAdminMain.xaml.cs">
       <DependentUpon>PageAdminMain.xaml</DependentUpon>
@@ -94,6 +157,10 @@
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\Laborant\PageProvideService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PageAdminMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,54 +190,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\analyzers.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\countries.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\insurance_companies.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MedLabModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MedLabModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MedLabModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MedLabModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MedLabModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\patients.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\patients_blood.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\provide_services.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\services.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\social_types.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\statuses.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\users.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\user_types.cs">
-      <DependentUpon>MedLabModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -198,12 +217,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\MedLabModel.edmx">
+    <EntityDeploy Include="Models\ModelSecond.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MedLabModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelSecond.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\MedLabModel.edmx.diagram">
-      <DependentUpon>MedLabModel.edmx</DependentUpon>
+    <None Include="Models\ModelSecond.edmx.diagram">
+      <DependentUpon>ModelSecond.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -221,17 +240,19 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Models\MedLabModel.Context.tt">
+    <Folder Include="Pages\Admin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\ModelSecond.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MedLabModel.edmx</DependentUpon>
-      <LastGenOutput>MedLabModel.Context.cs</LastGenOutput>
+      <DependentUpon>ModelSecond.edmx</DependentUpon>
+      <LastGenOutput>ModelSecond.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\MedLabModel.tt">
+    <Content Include="Models\ModelSecond.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MedLabModel.edmx</DependentUpon>
-      <LastGenOutput>MedLabModel.cs</LastGenOutput>
+      <DependentUpon>ModelSecond.edmx</DependentUpon>
+      <LastGenOutput>ModelSecond.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

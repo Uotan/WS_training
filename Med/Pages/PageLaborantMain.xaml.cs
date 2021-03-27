@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Med.APIs;
+using Med.Pages.Laborant;
 
 namespace Med.Pages
 {
@@ -24,6 +26,11 @@ namespace Med.Pages
         {
             InitializeComponent();
             Style = (Style)FindResource(typeof(Page));
+        }
+
+        private void BtnTakeBio_Click(object sender, RoutedEventArgs e)
+        {
+            FrameClass._mainFrame.Navigate(new PageProvideService());
         }
     }
 }

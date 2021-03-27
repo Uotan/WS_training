@@ -20,7 +20,7 @@ namespace Med.Windows
 {
     public partial class MainWindow : Window
     {
-        MeLabEntities medLabEntities = new MeLabEntities();
+        wsr_practiceEntities1 medLabEntities = new wsr_practiceEntities1();
         users _user;
         user_types user_Types = new user_types();
         DispatcherTimer dt;

@@ -12,22 +12,18 @@ namespace Med.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class patients_blood
+    public partial class success_types
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public patients_blood()
+        public success_types()
         {
-            this.provide_services = new HashSet<provide_services>();
+            this.login_history = new HashSet<login_history>();
         }
     
         public int code { get; set; }
-        public Nullable<int> patient { get; set; }
-        public Nullable<int> barcode { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
-        public Nullable<bool> is_deleted { get; set; }
+        public string success_type { get; set; }
     
-        public virtual patients patients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<provide_services> provide_services { get; set; }
+        public virtual ICollection<login_history> login_history { get; set; }
     }
 }

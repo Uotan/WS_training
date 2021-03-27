@@ -22,12 +22,15 @@
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
                FontSize="40"/>
-        <TextBox x:Name="captchaTextBox"
-                 Margin="140,40"
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="reCap" Style="{StaticResource forButt}"  Content="New CAPTCHA" Width="90" Height="50" Margin="0,0,10,0" Click="reCap_Click"></Button>
+            <TextBox x:Name="captchaTextBox"
                  Grid.Row="1"
                  FontSize="26" 
                  Background="{StaticResource attenColor}"
-                 Foreground="#FFFFFF" TextChanged="captchaTextBox_TextChanged"
+                 Foreground="#FFFFFF" TextChanged="captchaTextBox_TextChanged" Width="155" Margin="0,42"
                  />
+        </StackPanel>
     </Grid>
 </Window>

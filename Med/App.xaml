@@ -17,6 +17,7 @@
         <Style x:Key="forButt" TargetType="Button">
             <Setter Property="Background" Value="#FF498C51"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
         </Style>
         <Style x:Key="forLabels" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"></Setter>

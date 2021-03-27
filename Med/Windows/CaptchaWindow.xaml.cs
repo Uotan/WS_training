@@ -20,10 +20,11 @@ namespace Med.Windows
     /// </summary>
     public partial class CaptchaWindow : Window
     {
+        CaptchaAPI captcha;
         public CaptchaWindow()
         {
             InitializeComponent();
-            CaptchaAPI captcha = new CaptchaAPI();
+            captcha = new CaptchaAPI();
             captchaLabel.Content = captcha.GenerateCode();
         }
         
@@ -46,6 +47,11 @@ namespace Med.Windows
                 }
             }
             
+        }
+
+        private void reCap_Click(object sender, RoutedEventArgs e)
+        {
+            captchaLabel.Content = captcha.GenerateCode();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Med.APIs
                 else
                 {
 
-                    MeLabEntities medLabEntities = new MeLabEntities();
+                    wsr_practiceEntities1 medLabEntities = new wsr_practiceEntities1();
                     users check = medLabEntities.users.FirstOrDefault(x => x.login == _login && x.password == _password);
                     
                     if (check != null)

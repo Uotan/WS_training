@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище MedLabModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище wsr_practiceModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="analyzers">
           <Key>
             <PropertyRef Name="code" />
@@ -41,13 +41,22 @@
           <Property Name="insurance_bik" Type="int" Nullable="false" />
           <Property Name="is_deleted" Type="bit" />
         </EntityType>
-        <EntityType Name="patients">
+        <EntityType Name="login_history">
           <Key>
             <PropertyRef Name="code" />
           </Key>
           <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="success" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="patients">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="full_name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="datebirth" Type="date" Nullable="false" />
           <Property Name="passport_ser" Type="int" Nullable="false" />
@@ -67,9 +76,9 @@
             <PropertyRef Name="code" />
           </Key>
           <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="patient" Type="int" Nullable="false" />
-          <Property Name="barcode" Type="int" Nullable="false" />
-          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="patient" Type="int" />
+          <Property Name="barcode" Type="int" />
+          <Property Name="date" Type="datetime" />
           <Property Name="is_deleted" Type="bit" />
         </EntityType>
         <EntityType Name="provide_services">
@@ -111,6 +120,13 @@
           <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="status" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
+        <EntityType Name="success_types">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="success_type" Type="nvarchar" MaxLength="25" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -142,8 +158,20 @@
           <Property Name="type" Type="int" />
           <Property Name="isDeleted" Type="bit" />
         </EntityType>
+        <Association Name="FK_login_history_success_types">
+          <End Role="success_types" Type="Self.success_types" Multiplicity="1" />
+          <End Role="login_history" Type="Self.login_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="success_types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="login_history">
+              <PropertyRef Name="success" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_patients_blood_patients">
-          <End Role="patients" Type="Self.patients" Multiplicity="1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="0..1" />
           <End Role="patients_blood" Type="Self.patients_blood" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="patients">
@@ -262,20 +290,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище MedLabModelContainer">
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище wsr_practiceModelContainer">
           <EntitySet Name="analyzers" EntityType="Self.analyzers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="countries" EntityType="Self.countries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="history_login" EntityType="Self.history_login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="insurance_companies" EntityType="Self.insurance_companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login_history" EntityType="Self.login_history" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="patients" EntityType="Self.patients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="patients_blood" EntityType="Self.patients_blood" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="provide_services" EntityType="Self.provide_services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="social_types" EntityType="Self.social_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="statuses" EntityType="Self.statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="success_types" EntityType="Self.success_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_types" EntityType="Self.user_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_login_history_success_types" Association="Self.FK_login_history_success_types">
+            <End Role="success_types" EntitySet="success_types" />
+            <End Role="login_history" EntitySet="login_history" />
+          </AssociationSet>
           <AssociationSet Name="FK_patients_blood_patients" Association="Self.FK_patients_blood_patients">
             <End Role="patients" EntitySet="patients" />
             <End Role="patients_blood" EntitySet="patients_blood" />
@@ -317,10 +382,11 @@
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MedLabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="wsr_practiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="analyzers">
           <Key>
             <PropertyRef Name="code" />
@@ -338,6 +404,15 @@
           <Property Name="country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="patients" Relationship="Self.FK_patients_countries" FromRole="countries" ToRole="patients" />
         </EntityType>
+        <EntityType Name="history_login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="success" Type="Boolean" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="insurance_companies">
           <Key>
             <PropertyRef Name="code" />
@@ -351,13 +426,23 @@
           <Property Name="is_deleted" Type="Boolean" />
           <NavigationProperty Name="patients" Relationship="Self.FK_patients_insurance_companies" FromRole="insurance_companies" ToRole="patients" />
         </EntityType>
-        <EntityType Name="patients">
+        <EntityType Name="login_history">
           <Key>
             <PropertyRef Name="code" />
           </Key>
           <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="success" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="success_types" Relationship="Self.FK_login_history_success_types" FromRole="login_history" ToRole="success_types" />
+        </EntityType>
+        <EntityType Name="patients">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="full_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="datebirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="passport_ser" Type="Int32" Nullable="false" />
@@ -381,9 +466,9 @@
             <PropertyRef Name="code" />
           </Key>
           <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="patient" Type="Int32" Nullable="false" />
-          <Property Name="barcode" Type="Int32" Nullable="false" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="patient" Type="Int32" />
+          <Property Name="barcode" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="3" />
           <Property Name="is_deleted" Type="Boolean" />
           <NavigationProperty Name="patients" Relationship="Self.FK_patients_blood_patients" FromRole="patients_blood" ToRole="patients" />
           <NavigationProperty Name="provide_services" Relationship="Self.FK_provide_services_patients_blood" FromRole="patients_blood" ToRole="provide_services" />
@@ -434,6 +519,24 @@
           <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="status" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="provide_services" Relationship="Self.FK_provide_services_statuses" FromRole="statuses" ToRole="provide_services" />
+        </EntityType>
+        <EntityType Name="success_types">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="success_type" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="login_history" Relationship="Self.FK_login_history_success_types" FromRole="success_types" ToRole="login_history" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="user_types">
           <Key>
@@ -495,8 +598,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_login_history_success_types">
+          <End Role="success_types" Type="Self.success_types" Multiplicity="1" />
+          <End Role="login_history" Type="Self.login_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="success_types">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="login_history">
+              <PropertyRef Name="success" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_patients_blood_patients">
-          <End Role="patients" Type="Self.patients" Multiplicity="1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="0..1" />
           <End Role="patients_blood" Type="Self.patients_blood" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="patients">
@@ -579,16 +694,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MeLabEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="wsr_practiceEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="analyzers" EntityType="Self.analyzers" />
           <EntitySet Name="countries" EntityType="Self.countries" />
+          <EntitySet Name="history_login" EntityType="Self.history_login" />
           <EntitySet Name="insurance_companies" EntityType="Self.insurance_companies" />
+          <EntitySet Name="login_history" EntityType="Self.login_history" />
           <EntitySet Name="patients" EntityType="Self.patients" />
           <EntitySet Name="patients_blood" EntityType="Self.patients_blood" />
           <EntitySet Name="provide_services" EntityType="Self.provide_services" />
           <EntitySet Name="services" EntityType="Self.services" />
           <EntitySet Name="social_types" EntityType="Self.social_types" />
           <EntitySet Name="statuses" EntityType="Self.statuses" />
+          <EntitySet Name="success_types" EntityType="Self.success_types" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="user_types" EntityType="Self.user_types" />
           <EntitySet Name="users" EntityType="Self.users" />
           <AssociationSet Name="FK_provide_services_analyzers" Association="Self.FK_provide_services_analyzers">
@@ -602,6 +721,10 @@
           <AssociationSet Name="FK_patients_insurance_companies" Association="Self.FK_patients_insurance_companies">
             <End Role="insurance_companies" EntitySet="insurance_companies" />
             <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_login_history_success_types" Association="Self.FK_login_history_success_types">
+            <End Role="success_types" EntitySet="success_types" />
+            <End Role="login_history" EntitySet="login_history" />
           </AssociationSet>
           <AssociationSet Name="FK_patients_blood_patients" Association="Self.FK_patients_blood_patients">
             <End Role="patients" EntitySet="patients" />
@@ -631,36 +754,56 @@
             <End Role="user_types" EntitySet="user_types" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
-          <EntitySet Name="history_login" EntityType="MedLabModel.history_login" />
-          <EntitySet Name="sysdiagrams" EntityType="MedLabModel.sysdiagrams" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(wsr_practiceModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(wsr_practiceModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <EntityType Name="history_login">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="success" Type="Boolean" />
-          <Property Name="Time" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище MedLabModelContainer" CdmEntityContainer="MeLabEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище wsr_practiceModelContainer" CdmEntityContainer="wsr_practiceEntities1">
           <EntitySetMapping Name="analyzers">
-            <EntityTypeMapping TypeName="MedLabModel.analyzers">
+            <EntityTypeMapping TypeName="wsr_practiceModel.analyzers">
               <MappingFragment StoreEntitySet="analyzers">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="analyzer" ColumnName="analyzer" />
@@ -669,15 +812,25 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="countries">
-            <EntityTypeMapping TypeName="MedLabModel.countries">
+            <EntityTypeMapping TypeName="wsr_practiceModel.countries">
               <MappingFragment StoreEntitySet="countries">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="country" ColumnName="country" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="history_login">
+            <EntityTypeMapping TypeName="wsr_practiceModel.history_login">
+              <MappingFragment StoreEntitySet="history_login">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+                <ScalarProperty Name="success" ColumnName="success" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="insurance_companies">
-            <EntityTypeMapping TypeName="MedLabModel.insurance_companies">
+            <EntityTypeMapping TypeName="wsr_practiceModel.insurance_companies">
               <MappingFragment StoreEntitySet="insurance_companies">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="insurance_name" ColumnName="insurance_name" />
@@ -689,8 +842,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="login_history">
+            <EntityTypeMapping TypeName="wsr_practiceModel.login_history">
+              <MappingFragment StoreEntitySet="login_history">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="success" ColumnName="success" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="patients">
-            <EntityTypeMapping TypeName="MedLabModel.patients">
+            <EntityTypeMapping TypeName="wsr_practiceModel.patients">
               <MappingFragment StoreEntitySet="patients">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="login" ColumnName="login" />
@@ -712,7 +875,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="patients_blood">
-            <EntityTypeMapping TypeName="MedLabModel.patients_blood">
+            <EntityTypeMapping TypeName="wsr_practiceModel.patients_blood">
               <MappingFragment StoreEntitySet="patients_blood">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="patient" ColumnName="patient" />
@@ -723,7 +886,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="provide_services">
-            <EntityTypeMapping TypeName="MedLabModel.provide_services">
+            <EntityTypeMapping TypeName="wsr_practiceModel.provide_services">
               <MappingFragment StoreEntitySet="provide_services">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="blood" ColumnName="blood" />
@@ -739,7 +902,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="services">
-            <EntityTypeMapping TypeName="MedLabModel.services">
+            <EntityTypeMapping TypeName="wsr_practiceModel.services">
               <MappingFragment StoreEntitySet="services">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="service" ColumnName="service" />
@@ -750,7 +913,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="social_types">
-            <EntityTypeMapping TypeName="MedLabModel.social_types">
+            <EntityTypeMapping TypeName="wsr_practiceModel.social_types">
               <MappingFragment StoreEntitySet="social_types">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="social_type" ColumnName="social_type" />
@@ -758,15 +921,34 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="statuses">
-            <EntityTypeMapping TypeName="MedLabModel.statuses">
+            <EntityTypeMapping TypeName="wsr_practiceModel.statuses">
               <MappingFragment StoreEntitySet="statuses">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="success_types">
+            <EntityTypeMapping TypeName="wsr_practiceModel.success_types">
+              <MappingFragment StoreEntitySet="success_types">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="success_type" ColumnName="success_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="wsr_practiceModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="user_types">
-            <EntityTypeMapping TypeName="MedLabModel.user_types">
+            <EntityTypeMapping TypeName="wsr_practiceModel.user_types">
               <MappingFragment StoreEntitySet="user_types">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="user_type" ColumnName="user_type" />
@@ -774,7 +956,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="MedLabModel.users">
+            <EntityTypeMapping TypeName="wsr_practiceModel.users">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="full_name" ColumnName="full_name" />
@@ -788,27 +970,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="history_login">
-            <EntityTypeMapping TypeName="MedLabModel.history_login">
-              <MappingFragment StoreEntitySet="history_login">
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="success" ColumnName="success" />
-                <ScalarProperty Name="userLogin" ColumnName="userLogin" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MedLabModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище wsr_practiceModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище wsr_practiceModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище wsr_practiceModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище wsr_practiceModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="wsr_practiceModel.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище wsr_practiceModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="wsr_practiceModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище wsr_practiceModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище wsr_practiceModel.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
