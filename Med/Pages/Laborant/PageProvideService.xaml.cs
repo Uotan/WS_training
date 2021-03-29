@@ -38,7 +38,7 @@ namespace Med.Pages.Laborant
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            patients_blood H = new patients_blood { barcode = CodeB, date = DateTime.UtcNow };
+            patients_blood H = new patients_blood { patient=cmbPatients.SelectedIndex+1,  barcode = CodeB, date = DateTime.UtcNow };
             context.patients_blood.Add(H);
             context.SaveChanges();
         }
