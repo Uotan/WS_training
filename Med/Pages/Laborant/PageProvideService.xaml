@@ -5,14 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Med.Pages.Laborant"
       mc:Ignorable="d" 
-      d:DesignHeight="420" d:DesignWidth="700"
-      MinHeight="420"
-      MinWidth="700"
+      d:DesignHeight="650" d:DesignWidth="1300"
+      MinHeight="650"
+      MinWidth="1300"
       Title="PageProvideService">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
@@ -21,12 +22,27 @@
             <TextBlock FontSize="25" FontFamily="Comic Sans MS" VerticalAlignment="Center" HorizontalAlignment="Center">Пациент</TextBlock>
             <ComboBox x:Name="cmbPatients" IsEditable="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Comic Sans MS" Height="50" Width="250" SelectedItem="{Binding patients}" DisplayMemberPath="full_name"></ComboBox>
             <TextBlock FontSize="25" FontFamily="Comic Sans MS" VerticalAlignment="Center" HorizontalAlignment="Center">Штрих-код</TextBlock>
-            <TextBox x:Name="tbBarcode" Height="50" Width="250" Text="{Binding barcode}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Comic Sans MS"></TextBox>
+            <TextBox x:Name="tbBarcode" Height="50" IsReadOnly="True" Width="250" Text="{Binding barcode}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Comic Sans MS" TextChanged="tbBarcode_TextChanged"></TextBox>
         </UniformGrid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
+            <StackPanel x:Name="servicesStackPanel" Orientation="Vertical">
+                <ComboBox x:Name="serviceComboBox"
+                          Margin="170,15,110,15"
+                          Height="35"
+                          FontSize="18"
+                          SelectedItem="{Binding services}"
+                          DisplayMemberPath="service"
+                          VerticalContentAlignment="Center"
+                          Width="700"/>
+            </StackPanel>
+
+        </ScrollViewer>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            
             <Button Height="50" Width="150" Margin="30,0,30,0" HorizontalAlignment="Right" Style="{StaticResource forButt}" FontSize="20" Click="Button_Click" Content="Назад"/>
             <Button x:Name="btnBarcode" Height="50" Width="150" Margin="30,0,30,0" HorizontalAlignment="Right" Style="{StaticResource forButt}" FontSize="20"  Content="штрих-код" Click="btnBarcode_Click"/>
-            <Button Height="50" Width="150" Margin="30,0,30,0" HorizontalAlignment="Left" Style="{StaticResource forButt}" FontSize="20" Click="Button_Click_1" Content="Далее"/>
+            <Button x:Name="btnAddService" Height="50" Width="200" Margin="30,0,30,0" HorizontalAlignment="Right" Style="{StaticResource forButt}" FontSize="20" Click="btnAddService_Click" Content="Добавить услугу"/>
+            <Button x:Name="btnAddprovideService" Height="50" Width="200" Margin="30,0,30,0" HorizontalAlignment="Left" Style="{StaticResource forButt}" FontSize="20" Click="btnAddprovideService_Click"  Content="Провести услугу"/>
         </StackPanel>
     </Grid>
 </Page>

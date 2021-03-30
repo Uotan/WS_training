@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Med.Windows"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="520" 
-        Width="700"
-        MinHeight="520"
-        MinWidth="700"
+        Height="750" 
+        Width="1300"
+        MinHeight="750"
+        MinWidth="1300"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>

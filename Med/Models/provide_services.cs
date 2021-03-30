@@ -17,12 +17,12 @@ namespace Med.Models
         public int code { get; set; }
         public Nullable<int> blood { get; set; }
         public Nullable<int> service { get; set; }
-        public decimal result { get; set; }
-        public int accepted { get; set; }
+        public Nullable<decimal> result { get; set; }
+        public Nullable<int> accepted { get; set; }
         public Nullable<int> status { get; set; }
         public Nullable<int> analyzer { get; set; }
         public Nullable<int> user { get; set; }
-        public System.DateTime finish_date { get; set; }
+        public Nullable<System.DateTime> finish_date { get; set; }
         public Nullable<bool> is_deleted { get; set; }
     
         public virtual analyzers analyzers { get; set; }

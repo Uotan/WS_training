@@ -24,12 +24,12 @@ namespace Med.Models
         public string login { get; set; }
         public string password { get; set; }
         public string full_name { get; set; }
-        public System.DateTime datebirth { get; set; }
-        public int passport_ser { get; set; }
-        public int passport_num { get; set; }
+        public Nullable<System.DateTime> datebirth { get; set; }
+        public Nullable<int> passport_ser { get; set; }
+        public Nullable<int> passport_num { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
-        public int social_sec_number { get; set; }
+        public Nullable<int> social_sec_number { get; set; }
         public Nullable<int> social_type { get; set; }
         public Nullable<int> insurance_company { get; set; }
         public Nullable<int> country { get; set; }
